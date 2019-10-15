@@ -1,8 +1,5 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.10)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
-
-
 project(JKQTPlotter LANGUAGES CXX VERSION 2019.06)
 
 
@@ -10,24 +7,31 @@ project(JKQTPlotter LANGUAGES CXX VERSION 2019.06)
 if(NOT DEFINED BUILD_SHARED_LIBS)
     option(BUILD_SHARED_LIBS "Build as shared library" ON)
 endif()
+
 if(NOT DEFINED BUILD_STATIC_LIBS)
     option(BUILD_STATIC_LIBS "Build as static library" ON)
 endif()
+
 if(NOT DEFINED BUILD_INCLUDE_XITS_FONTS)
     option(BUILD_INCLUDE_XITS_FONTS "Include XITS fonts as resources in library" ON)
 endif()
+
 if(NOT DEFINED BUILD_DECORATE_LIBNAMES_WITH_BUILDTYPE)
     option(BUILD_DECORATE_LIBNAMES_WITH_BUILDTYPE "If set, the build-type is appended to the library name" ON)
 endif()
+
 if(NOT DEFINED BUILD_HIGH_COMPILE_WARNING_LEVEL)
     option(BUILD_HIGH_COMPILE_WARNING_LEVEL "Set Compiler Warning level to high" OFF)
 endif()
+
 if(NOT DEFINED BUILD_EXAMPLES)
     option(BUILD_EXAMPLES "Build examples" ON)
 endif()
+
 if(NOT DEFINED BUILD_HAS_OPENCV)
     option(BUILD_HAS_OPENCV "OpenCV available? If yes, OpenCV examples are built when BUILD_EXAMPLES=ON" OFF)
 endif()
+
 if(NOT DEFINED LIB_INSTALL)
     option(LIB_INSTALL "Install library" ON)
 endif()

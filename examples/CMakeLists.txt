@@ -5,17 +5,23 @@ message( STATUS "...............................................................
 message( STATUS ".. BUILDING EXAMPLES" )
 message( STATUS "............................................................................." )
 
-add_subdirectory(jkqtfastplotter_test)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+find_package(Qt5 5.9 REQUIRED Core Gui Widgets PrintSupport Svg Xml OpenGL)
 
-add_subdirectory(jkqtmathtext_simpletest)
-add_subdirectory(jkqtmathtext_test)
 
-add_subdirectory(jkqtplot_test)
+
+
+
 
 add_subdirectory(advplotstyling)
 add_subdirectory(barchart)
 add_subdirectory(boxplot)
 add_subdirectory(contourplot)
+
+
+
 add_subdirectory(datastore)
 add_subdirectory(datastore_groupedstat)
 add_subdirectory(datastore_iterators)
@@ -24,6 +30,7 @@ add_subdirectory(datastore_statistics)
 add_subdirectory(datastore_statistics_2d)
 add_subdirectory(dateaxes)
 add_subdirectory(distributionplot)
+
 add_subdirectory(errorbarstyles)
 add_subdirectory(filledgraphs)
 add_subdirectory(functionplot)
@@ -34,6 +41,14 @@ add_subdirectory(imageplot_modifier)
 add_subdirectory(imageplot_nodatastore)
 add_subdirectory(imageplot_opencv)
 add_subdirectory(impulsesplot)
+
+add_subdirectory(jkqtfastplotter_test)
+add_subdirectory(jkqtmathtext_simpletest)
+add_subdirectory(jkqtmathtext_test)
+add_subdirectory(jkqtplot_test)
+
+
+
 add_subdirectory(logaxes)
 add_subdirectory(multiplot)
 add_subdirectory(parametriccurve)
@@ -55,4 +70,4 @@ add_subdirectory(ui)
 add_subdirectory(user_interaction)
 add_subdirectory(violinplot)
 
-
+add_subdirectory(cmake_link_example)

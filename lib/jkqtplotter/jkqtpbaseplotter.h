@@ -1,3 +1,6 @@
+#ifndef JKQTPBASEPLOTTER_H
+#define JKQTPBASEPLOTTER_H
+
 /*
     Copyright (c) 2008-2019 Jan W. Krieger (<jan@jkrieger.de>)
 
@@ -16,6 +19,7 @@
     You should have received a copy of the GNU Lesser General Public License (LGPL)
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 
 #include "jkqtplotter/jkqtptools.h"
 #include "jkqtplotter/jkqtpdatastorage.h"
@@ -48,8 +52,6 @@
  #include "jkqtplotter/jkqtplotter_imexport.h"
 
 
-#ifndef JKQTPBASEPLOTTER_H
-#define JKQTPBASEPLOTTER_H
 
 
 class JKQTPGraphsModel; // forward

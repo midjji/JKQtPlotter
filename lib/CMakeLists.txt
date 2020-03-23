@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 # changes means you need to rerun cmake to update
 
 file(GLOB_RECURSE utils-srcs  "*.cpp" "*.h" "*.qrc")
-PrintList("${utils-srcs}" "")
+#print_list("jkqtplotter: " utils-srcs)
 
 #qt5
 # Find includes in corresponding build directories
@@ -21,4 +21,5 @@ target_include_directories(jkqtplotter PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 target_include_directories(jkqtplotter PUBLIC ${Qt5Widgets_INCLUDE_DIRS}) # automatic with the Qt5::Core etc
 target_link_libraries(jkqtplotter PUBLIC Qt5::Core Qt5::Gui Qt5::Widgets Qt5::PrintSupport Qt5::Svg Qt5::Xml Qt5::OpenGL)
 
-
+# needs
+# sudo apt install libqt5svg5-dev

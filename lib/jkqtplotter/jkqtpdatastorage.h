@@ -278,6 +278,18 @@ enum class JKQTPDatastoreItemFormat {
   *
   */
 class JKQTPLOTTER_LIB_EXPORT JKQTPDatastore{
+public:
+    /** \brief add a new columns which references a specified item and a specified column therein.
+     *  \see \ref JKQTPlotterBasicJKQTPDatastore
+     * needs to be public for opencv, should really be protected...
+     */
+    size_t addColumnForItem(size_t itemID, size_t columnInItem, const QString& name=QString(""));
+    /** \brief add one internal column to the datastore. It contains \a rows rows.
+     *         This function retuns an item ID (which can be used with getItem() ), not a column ID!
+     * needs to be public for opencv, should really be protected...
+    */
+    size_t addInternalItem(double* data, size_t rows);
+
     private:
         /** \brief a std::vector that contains all items managed by this datastore */
         QMap<size_t, JKQTPDatastoreItem*> items;
@@ -320,9 +332,7 @@ class JKQTPLOTTER_LIB_EXPORT JKQTPDatastore{
         /** \brief add one external column to the datastore. It contains \a rows rows.
          *         This function retuns an item ID (which can be used with getItem() ), not a column ID! */
         size_t addItem(double* data, size_t rows);
-        /** \brief add one internal column to the datastore. It contains \a rows rows.
-         *         This function retuns an item ID (which can be used with getItem() ), not a column ID! */
-        size_t addInternalItem(double* data, size_t rows);
+
 
         /** \brief add one external column to the datastore. It contains \a rows rows. The data is copied and the copy managed internally
          *         This function retuns an item ID (which can be used with getItem() ), not a column ID! */
@@ -346,10 +356,7 @@ class JKQTPLOTTER_LIB_EXPORT JKQTPDatastore{
             return items.value(i, nullptr);
         }
 
-        /** \brief add a new columns which references a specified item and a specified column therein.
-         *  \see \ref JKQTPlotterBasicJKQTPDatastore
-         */
-        size_t addColumnForItem(size_t itemID, size_t columnInItem, const QString& name=QString(""));
+
 
         /** \brief returns the JKQTPColumn object for the \a i -th column in the store
          *

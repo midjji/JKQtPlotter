@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 # changes means you need to rerun cmake to update
 
 file(GLOB_RECURSE utils-srcs  "*.cpp" "*.h" "*.qrc")
-PrintList("${utils-srcs}" "")
+#PrintList("${utils-srcs}" "")
 
 #qt5
 # Find includes in corresponding build directories
@@ -12,8 +12,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 find_package(Qt5 5.9 REQUIRED Core Gui Widgets PrintSupport Svg Xml OpenGL)
 
+add_library(jkqtplotter ${utils-srcs} ${utils-headers}) # must be after the qt stuff is set!
 
-add_library(jkqtplotter ${utils-srcs} ${utils-headers})
 target_compile_features(jkqtplotter PUBLIC cxx_std_11)
 target_configure_warnings(jkqtplotter)
 # We need this directory, and users of our library will need it too

@@ -1,34 +1,15 @@
-cmake_minimum_required(VERSION 3.0)
-if (BUILD_HAS_OPENCV)
-    find_package( OpenCV  )
-    if(OpenCV_FOUND)
+cmake_minimum_required(VERSION 3.10)
 
-        set(EXAMPLE_NAME imageplot_opencv)
-        set(EXENAME jkqtptest_${EXAMPLE_NAME})
+find_package( OpenCV 4)
+if(OpenCV_FOUND)
+    get_filename_component(bin ${CMAKE_CURRENT_SOURCE_DIR} NAME_WE)
+    file(GLOB_RECURSE srcs  "*.cpp" "*.h" "*.qrc" "*.ui")
+    add_executable(${bin} ${bin}.cpp ${srcs})
+    target_link_libraries(${bin} PUBLIC jkqtplotter)
+    print_list(${OpenCV_INCLUDE_DIRS} "")
+    # opencv
+    message("${bin}")
+    target_include_directories(${bin} PUBLIC ${OpenCV_INCLUDE_DIRS} )
+    target_link_libraries(${bin} PUBLIC ${OpenCV_LIBS} )
 
-        message( STATUS "..   Building Example ${EXAMPLE_NAME}" )
-
-        # Set up source files
-        set(SOURCES ${EXAMPLE_NAME}.cpp)
-        set(HEADERS )
-        set(RESOURCES  )
-        set(UIS  )
-
-        add_executable(${EXENAME} WIN32 ${SOURCES} ${HEADERS} ${RESOURCES} ${UIS})
-        target_include_directories(${EXENAME} PRIVATE ../../lib)
-        if(BUILD_STATIC_LIBS)
-            target_link_libraries(${EXENAME} JKQTPlotterLib)
-        elseif(BUILD_SHARED_LIBS)
-            target_link_libraries(${EXENAME} JKQTPlotterSharedLib)
-        endif()
-        include_directories( ${OpenCV_INCLUDE_DIRS} )
-        target_link_libraries(${EXENAME} ${OpenCV_LIBS} )
-
-
-
-        # Installation
-        if(LIB_INSTALL)
-            install(TARGETS ${EXENAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
-        endif(LIB_INSTALL)
-    endif(OpenCV_FOUND)
-endif()
+endif(OpenCV_FOUND)

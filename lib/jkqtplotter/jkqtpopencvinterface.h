@@ -1,3 +1,4 @@
+#pragma once
 /*
     Copyright (c) 2018-2019 Jan W. Krieger (<jan@jkrieger.de>)
 
@@ -16,16 +17,21 @@
     You should have received a copy of the GNU Lesser General Public License (LGPL)
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+/*
+* this header requires opencv and should not be included unless you have opencv support
+*/
 
+
+
+
+
+#ifndef JKQTPOPENCVINTERFACE_H
+#define JKQTPOPENCVINTERFACE_H
 
 
 #include "jkqtplotter/jkqtplotter_imexport.h"
 #include "jkqtplotter/jkqtpdatastorage.h"
 #include <opencv2/core.hpp>
-
-#ifndef JKQTPOPENCVINTERFACE_H
-#define JKQTPOPENCVINTERFACE_H
-
 
 /** \brief add one external column to the datastore. It will be filled with the contents of vector \a data.
  * \ingroup jkqtpopencvinterface
@@ -38,9 +44,6 @@
  *
  *   \note You need to define the Macro JKQTPLOTTER_OPENCV_INTERFACE when compiling this lib to enabled this function.
  */
-inline size_t JKQTPCopyCvMatToColumn(JKQTPDatastore* datastore, const cv::Mat& mat, const QString& name=QString(""), int channel=0);
-
-
 
 
 
@@ -63,7 +66,7 @@ namespace JKQTPDatastore_Helper {
     }
 }
 
-inline size_t JKQTPCopyCvMatToColumn(JKQTPDatastore* datastore, const cv::Mat& mat, const QString &name, int channel)
+template<int I=0>  size_t JKQTPCopyCvMatToColumn(JKQTPDatastore* datastore, const cv::Mat& mat, const QString &name, int channel=0)
 {
     const size_t N=static_cast<size_t>(mat.cols*mat.rows);
     double* d=static_cast<double*>(malloc(static_cast<size_t>(N)*sizeof(double)));

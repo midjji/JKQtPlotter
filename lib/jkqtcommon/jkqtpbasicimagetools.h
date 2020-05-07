@@ -706,7 +706,7 @@ inline void JKQTPImagePlot_array2RGBimage(T* dbl_in, int width, int height, QIma
                 for (int j=0; j<height; ++j) {
                     QRgb* line=reinterpret_cast<QRgb *>(img.scanLine(height-1-j));
                     for (int i=0; i<width; ++i) {
-                        int v = (dbl[j*width+i]-min)*255/delta;
+                        int v = int((dbl[j*width+i]-min)*255/delta);
                         v = (v < 0) ? 0 : ( (v > 255) ? 255 : v);
                         const QRgb l=line[i];
                         //if (j==5) qDebug()<<"b: "<<qRed(l)<<qGreen(l)<<v<<qAlpha(255);

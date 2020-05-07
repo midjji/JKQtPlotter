@@ -8,15 +8,13 @@ init_build()
 
 add_subdirectory(lib)
 get_directory_property(hasParent PARENT_DIRECTORY)
+# mark as advanced instead
 if(NOT hasParent)
-option(BUILD_JKQT_EXAMPLES "Build examples" OFF)
-if(BUILD_JKQT_EXAMPLES)
-    add_subdirectory(examples)
+    option(BUILD_JKQT_EXAMPLES "Build examples" OFF)
+    if(BUILD_JKQT_EXAMPLES)
+        add_subdirectory(examples)
+    endif()
 endif()
-endif()
-
-    target_compile_definitions(jkqtplotter INTERFACE -DAUTOLOAD_XITS_FONTS)
-    target_compile_definitions(jkqtplotter INTERFACE -DUSE_XITS_FONTS )
 
 
 

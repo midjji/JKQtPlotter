@@ -10,7 +10,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
-message("Needs qt5 and svg\n sudo apt install qt5-defaults libqt5svg5-dev " )
+#message("Needs qt5 and svg\n sudo apt install qt5-defaults libqt5svg5-dev " )
 find_package(Qt5 5.9 REQUIRED Core Gui Widgets PrintSupport Svg Xml OpenGL)
 
 add_library(jkqtplotter ${utils-srcs} ${utils-headers}) # must be after the qt stuff is set!

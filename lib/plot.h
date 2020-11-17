@@ -1,16 +1,31 @@
 #pragma once
 #include <string>
 #include <vector>
+#include <map>
+namespace cvl {
+
+
 /**
  * @brief plot
  * @param xs
  * @param ys
  * @param title
- *
- * simple helper/wrapper,
- * this is not thread safe and requires a running QApp
- * call twice with the same name and they show up in the same window with different colors.
+ * \notes
+ * - Thread Safe
+ * - Initializes automatically on first request
+ * - stops running once all windows have been closed.
+ * - call twice with the same name and they show up in the
+ *      same window with different colors, unless you closed it inbetween
+ * - Implicitly internally runs a QApplication in its own thread
+ * - Conflict with opencv? probably not
+ * - Conflict with anything else, probably not.
  */
-void plot(std::vector<double> xs,
-          std::vector<double> ys,
-          std::string title="y(x)");
+void plot(const std::vector<double>& xs,
+          const std::vector<double>& ys,
+          std::string title);
+void plot(const std::vector<double>& xs, const std::map<std::string, std::vector<double>>& yss);
+
+// call this to control startup time, or ensure the qapp runner, no need to call in general
+void initialize_plotter();
+
+}

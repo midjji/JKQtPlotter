@@ -1,7 +1,13 @@
 cmake_minimum_required(VERSION 3.16)
-# changes means you need to rerun cmake to update
+# changes means you need to rerun cmake to update, also note that qt autogens stuff, which easily gets caught by general recurses
+file(GLOB_RECURSE utils-srcs
+    "jkqtcommon/*.cpp" "jkqtcommon/*.h" "jkqtcommon/*.qrc"
+    "jkqtfastplotter/*.cpp" "jkqtfastplotter/*.qrc"
+    "jkqtplotter/*.cpp" "jkqtplotter/*.qrc"
+    "jkqtmathtext/*.cpp" "jkqtmathtext/*.qrc" "plot.cpp"
+    )
 
-file(GLOB_RECURSE utils-srcs  "*.cpp" "*.h" "*.qrc")
+
 #print_list("jkqtplotter: " utils-srcs)
 
 #qt5
@@ -12,14 +18,14 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 #message("Needs qt5 and svg\n sudo apt install qt5-defaults libqt5svg5-dev " )
 find_package(Qt5 5.9 REQUIRED Core Gui Widgets PrintSupport Svg Xml OpenGL)
+# ALSO REQUIRES the mtgui library, but that is managed on the higher level
 
-add_library(jkqtplotter ${utils-srcs} ${utils-headers}) # must be after the qt stuff is set!
-
+add_library(jkqtplotter ${utils-srcs} ) # must be after the qt stuff is set!
 target_compile_features(jkqtplotter PUBLIC cxx_std_17)
 #target_configure_warnings(jkqtplotter)
 # We need this directory, and users of our library will need it too
 target_include_directories(jkqtplotter SYSTEM PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
-target_include_directories(jkqtplotter SYSTEM PRIVATE ${Qt5Widgets_INCLUDE_DIRS}) # automatic with the Qt5::Core etc
+target_include_directories(jkqtplotter SYSTEM PUBLIC ${Qt5Widgets_INCLUDE_DIRS}) # automatic with the Qt5::Core etc
 target_link_libraries(jkqtplotter PRIVATE Qt5::Core Qt5::Gui Qt5::Widgets Qt5::PrintSupport Qt5::Svg Qt5::Xml Qt5::OpenGL)
 
 target_compile_definitions(jkqtplotter INTERFACE -DAUTOLOAD_XITS_FONTS)

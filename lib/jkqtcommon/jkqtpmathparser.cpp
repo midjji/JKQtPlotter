@@ -1947,7 +1947,7 @@ std::string JKQTPMathParser::jkmpException::getMessage() const {
 }
 
 const char *JKQTPMathParser::jkmpException::what() const noexcept {
-    return getMessage().c_str();
+    return errormessage.c_str();
 }
 
 JKQTPMathParser *JKQTPMathParser::jkmpNode::getParser(){ return parser; }

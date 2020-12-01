@@ -4,7 +4,7 @@ file(GLOB_RECURSE utils-srcs
     "jkqtcommon/*.cpp" "jkqtcommon/*.h" "jkqtcommon/*.qrc"
     "jkqtfastplotter/*.cpp" "jkqtfastplotter/*.qrc"
     "jkqtplotter/*.cpp" "jkqtplotter/*.qrc"
-    "jkqtmathtext/*.cpp" "jkqtmathtext/*.qrc" "plot.cpp"
+    "jkqtmathtext/*.cpp" "jkqtmathtext/*.qrc" "plot.cpp" "plot.h"
     )
 
 

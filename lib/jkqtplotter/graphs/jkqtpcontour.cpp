@@ -30,7 +30,7 @@
 #include <QFileInfo>
 #include <QApplication>
 #include <QClipboard>
-# include <QVector3D>
+#include <QVector3D>
 
 JKQTPContourPlot::JKQTPContourPlot(JKQTBasePlotter *parent) :
     JKQTPMathImage(parent)
